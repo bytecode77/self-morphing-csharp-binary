@@ -64,7 +64,7 @@ This animation visualizes the executable's source code morphing each time the ex
 
 ## Downloads
 
-[![](http://bytecode77.com/public/fileicons/zip.png) SelfMorphingCSharpBinary 1.0.0.zip](https://bytecode77.com/downloads/SelfMorphingCSharpBinary%201.0.0.zip)
+[![](http://bytecode77.com/public/fileicons/zip.png) SelfMorphingCSharpBinary 1.0.0.zip](https://downloads.bytecode77.com/SelfMorphingCSharpBinary%201.0.0.zip)
 (**ZIP Password:** bytecode77)
 
 ## Project Page
