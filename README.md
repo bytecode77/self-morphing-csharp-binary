@@ -62,6 +62,52 @@ This animation visualizes the executable's source code morphing each time the ex
 
 ![](https://bytecode77.com/images/pages/self-morphing-csharp-binary/morphing.gif)
 
+## an explanation of the methods and steps involved in the builder and stub code:
+
+Main method
+This is the entry point of the program. It performs the following steps:
+
+Initializes a Random object and a string of characters to be used for obfuscation.
+Creates a CodeDomProvider object for compiling C# code.
+Sets up CompilerParameters to specify the output assembly, compiler options, and referenced assemblies for the compilation.
+Reads in the stub code from the Resources.Stub file and stores it in a string variable.
+Replaces occurrences of the string "V" in the stub code with randomly generated variable names, using the GetCleanVariableName method to generate the new names.
+Encrypts and compresses the stub code and payload data, and stores the resulting byte arrays in the stub code as array initializers.
+Replaces string literals in the stub code with calls to a function that decrypts a string that has been encrypted using a simple substitution cipher.
+Renames any remaining occurrences of "V" in the stub code using the GetVariableName method to generate new names.
+Compiles the modified stub code using the CodeDomProvider object and the CompilerParameters.
+Renames the output assembly to "SelfMorphingCSharpBinary.exe" and replaces the original file with the new one.
+GetCleanVariableName method
+This method generates a random variable name for use in the modified stub code. It does this by concatenating a random number of randomly chosen lowercase letters from the ObfuscationCharacters string.
+
+GetVariableName method
+This method generates a random variable name for use in the modified stub code. It does this by concatenating a random number of randomly chosen lowercase letters from the ObfuscationCharacters string, and appending a randomly chosen number from 0 to 9.
+
+EncryptString method
+This method takes a string as input and returns an encrypted version of the string. It does this by replacing each character in the string with a corresponding character from a fixed substitution cipher alphabet.
+
+Encrypt method
+This method takes a byte array as input and returns an encrypted version of the array. It does this by XORing each byte in the array with a randomly chosen byte.
+
+Compress method
+This method takes a byte array as input and returns a compressed version of the array. It does this using the GZipStream class from the System.IO.Compression namespace.
+
+DecryptString method (in the stub code)
+This method takes an encrypted string as input and returns the decrypted version of the string. It does this by replacing each character in the string with a corresponding character from the fixed substitution cipher alphabet that was used to encrypt the string.
+
+Decrypt method (in the stub code)
+This method takes an encrypted byte array as input and returns the decrypted version of the array. It does this by XORing each byte in the array with the same randomly chosen byte that was used to encrypt the array.
+
+Decompress method (in the stub code)
+This method takes a compressed byte array as input and returns the decompressed version of the array. It does this using the GZipStream class from the System.IO.Compression namespace.
+GetPayload method (in the stub code)
+This method decompresses and decrypts the payload data that was included in the executable as a byte array. It does this by calling the Decompress and Decrypt methods on the payload data array.
+
+Main method (in the stub code)
+This is the entry point of the program. It performs the following steps:
+
+Calls the GetPayload method to retrieve the payload data.
+Executes the payload data, which could contain additional code or data that the program will utilize.
 ## Downloads
 
 [![](http://bytecode77.com/public/fileicons/zip.png) SelfMorphingCSharpBinary 1.0.0.zip](https://downloads.bytecode77.com/SelfMorphingCSharpBinary%201.0.0.zip)
