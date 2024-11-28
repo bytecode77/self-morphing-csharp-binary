@@ -30,17 +30,17 @@ For the sake of debugging and visualizing, all generated code files are written 
 
 **Step 1:** Build.exe takes **Stub.cs** from its resources and processes, then compiles it. The original file looks like this:
 
-![](https://bytecode77.com/images/pages/self-morphing-csharp-binary/original.png)
+![](https://bytecode77.com/images/pages/self-morphing-csharp-binary/original.webp)
 
 Because the binary needs to obfuscate itself on runtime, the original code must be included as well, somewhat similar to a quine. No managed resources are used, just byte[] literals. Variables that start with "_V_" will be renamed using characters from line 15.
 
 Variable names from the original code, which is included as a byte[] literal, will also be obfuscated. However, alphanumerical characters are used. This is the code that is compiled along with the actual binary:
 
-![](https://bytecode77.com/images/pages/self-morphing-csharp-binary/intermediate.png)
+![](https://bytecode77.com/images/pages/self-morphing-csharp-binary/intermediate.webp)
 
 So, the code from the first screenshot is what I work with during development. The code on the second screenshot is the code that is included as a resource... *sigh*... as a byte[] literal in the binary. Now, look at the final code that is used to compile the binary:
 
-![](https://bytecode77.com/images/pages/self-morphing-csharp-binary/obfuscated.png)
+![](https://bytecode77.com/images/pages/self-morphing-csharp-binary/obfuscated.webp)
 
 This is also what you get when decompiling the binary. The highlighted text, for instance, is a method that decrypts strings. The payload is executed in memory on line 18 using Assembly.Load().Invoke(). For instance, the encrypted string in GetMethod(...) is actually **"Main"**.
 
@@ -54,13 +54,13 @@ Since we are talking about a "**self**-morphing" binary, the original file shoul
 
 **Step 3:** Looking at the binary when decompiled... Result: Yes, it is obfuscated and very incomprehensive. Note, that there *are* professional obfuscators available. But here, we need a very minimalistic obfuscator that is built in and can re-compile and obfuscate even itself.
 
-![](https://bytecode77.com/images/pages/self-morphing-csharp-binary/decompiled.png)
+![](https://bytecode77.com/images/pages/self-morphing-csharp-binary/decompiled.webp)
 
 **Step 4:** Done! Now let's enjoy our binary.
 
 This animation visualizes the executable's source code morphing each time the executable is run.
 
-![](https://bytecode77.com/images/pages/self-morphing-csharp-binary/morphing.gif)
+![](https://bytecode77.com/images/pages/self-morphing-csharp-binary/morphing.webp)
 
 ## Downloads
 
